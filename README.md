@@ -1,2 +1,2 @@
 # lab_iagi
-Repository per l'esame lab iagi Sapienza
+Repository per l'esame lab iagi 
