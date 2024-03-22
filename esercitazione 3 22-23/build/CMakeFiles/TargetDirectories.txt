@@ -1,0 +1,4 @@
+/Users/alessandro/Desktop/esercitazione3/esercitazione3-22-23/build/CMakeFiles/uwimg++.dir
+/Users/alessandro/Desktop/esercitazione3/esercitazione3-22-23/build/CMakeFiles/test2.dir
+/Users/alessandro/Desktop/esercitazione3/esercitazione3-22-23/build/CMakeFiles/edit_cache.dir
+/Users/alessandro/Desktop/esercitazione3/esercitazione3-22-23/build/CMakeFiles/rebuild_cache.dir
