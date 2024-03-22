@@ -1,0 +1,9 @@
+/Users/alessandro/Desktop/esercitazione4/Esercitazione4-22-23/build/CMakeFiles/uwimg++.dir
+/Users/alessandro/Desktop/esercitazione4/Esercitazione4-22-23/build/CMakeFiles/test1.dir
+/Users/alessandro/Desktop/esercitazione4/Esercitazione4-22-23/build/CMakeFiles/test2.dir
+/Users/alessandro/Desktop/esercitazione4/Esercitazione4-22-23/build/CMakeFiles/test4.dir
+/Users/alessandro/Desktop/esercitazione4/Esercitazione4-22-23/build/CMakeFiles/make-panorama.dir
+/Users/alessandro/Desktop/esercitazione4/Esercitazione4-22-23/build/CMakeFiles/edit_cache.dir
+/Users/alessandro/Desktop/esercitazione4/Esercitazione4-22-23/build/CMakeFiles/rebuild_cache.dir
+/Users/alessandro/Desktop/esercitazione4/Esercitazione4-22-23/build/src/opencv/CMakeFiles/edit_cache.dir
+/Users/alessandro/Desktop/esercitazione4/Esercitazione4-22-23/build/src/opencv/CMakeFiles/rebuild_cache.dir
