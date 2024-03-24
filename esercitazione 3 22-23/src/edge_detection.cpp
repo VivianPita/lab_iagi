@@ -16,6 +16,12 @@ Input:
 Output:
     Image: the smoothed image (im.w, im.h, 1)
 */
+
+
+//Il primo passo è la riduzione del rumore dell'immagine applicando un filtro Gaussiano.
+//Per farlo, utilizzate le funzioni che avete sviluppato nel homework 2, e completate
+//la funzione smooth_image().
+//Usando un filtro Gaussiano di dimensione 9x9 e deviazione standard σ=1.4
 Image smooth_image(const Image& im, float sigma)
 {
     // TODO: Your code here
@@ -32,6 +38,14 @@ Input:
 Output:
     pair<Image,Image>: the magnitude and direction of the gradient of the image
                        with magnitude in [0,1] and direction in [-pi,pi]
+*/
+
+/*
+Il secondo passo consiste nell'identificare l'intensità e la direzione dei bordi nell'immagine. 
+Questo si può ottenere calcolando il gradiente dell'immagine. Lo step 1 è necessario perché
+i gradienti sono molto sensibili al rumore. Per calcolare il gradiente, completate 
+la funzione compute_gradient(). Potete utilizzare la funzione sobel che avete sviluppato 
+nel homework 2, ricordando di normalizzare l'ampiezza del gradiente.
 */
 pair<Image,Image> compute_gradient(const Image& im)
 {
@@ -50,7 +64,22 @@ Input:
 Output:
     Image: the image after non-maximum suppression
 */
+/*
+L'ampiezza del gradiente ha messo in evidenza i bordi, ma questi sono troppo spessi 
+e sfocati. Questo step ha lo scopo di ridurre la larghezza dei bordi e di renderli 
+più definiti. Fondamentalmente, questo è fatto preservando i pixel che sono localmente
+massimi lungo la direzione del bordo ed eliminando tutti gli altri pixel.
+Nel nostro caso, invece di utilizzare direttamente la direzione del gradiente, 
+la arrotondiamo al multiplo di 45° più vicino. Poi consideriamo i valori dei due pixel
+vicini lungo questa direzione. In pratica, invece di ottenere i valori p ed r per 
+interpolazione, stiamo usando l'approccio nearest neighbor.
 
+Più precisamente, per ogni pixel:
+
+Si arrotonda la direzione del gradiente al più vicino multiplo di PI/4.
+Se il pixel è maggiore dei suoi vicini lungo questa direzione, allora viene mantenuto, 
+altrimenti viene eliminato.
+*/
 float min_mag(float a, float b, float c)
   {
   return min({a,b,c});
@@ -122,6 +151,20 @@ Image non_maximum_suppression(const Image& mag, const Image& dir)
     Output:
         Image: the thresholded image
 */
+
+/*
+Questo step ha l'obiettivo di identificare 3 tipi di pixel: forti, deboli e non rilevanti:
+I pixel forti hanno un valore di intensità maggiore di una soglia alta (high threshold) e sono 
+considerati come bordi.
+I pixel non rilevanti hanno un valore di intensità minore di una soglia bassa (low threshold)
+e sono considerati non rilevanti per il bordo.
+I pixel deboli hanno un valore di intensità compreso tra le soglie bassa e alta e sono considerati 
+come bordi solo se sono connessi a pixel forti, altrimenti sono considerati non rilevanti. 
+Questa operazione verrà eseguita nel prossimo step tramite il tracciamento dei bordi per isteresi.
+Per implementare questo step, completate la funzione double_thresholding(). Il risultato di questo
+step è un'immagine con 3 valori di intensità: 0, 0.25 e 1.0. I pixel con valore 0 sono quelli non rilevanti,
+quelli con valore 1.0 sono quelli forti e quelli con valore 0.25 sono quelli deboli:
+*/
 Image double_thresholding(const Image& im, float lowThreshold, float highThreshold, float strongVal, float weakVal)
 {
     Image res(im.w, im.h, im.c);
@@ -151,6 +194,11 @@ Image double_thresholding(const Image& im, float lowThreshold, float highThresho
         float strong: the value of the strong edges
     Output:
         Image: the image after hysteresis thresholding, with only strong edges
+*/
+
+/*
+Lo step successivo consiste nel trasformare i pixel deboli in pixel forti,
+se e solo se sono connessi a pixel forti. In caso contrario, questi pixel vengono impostati a 0.
 */
 Image edge_tracking(const Image& im, float weak, float strong)
 {
